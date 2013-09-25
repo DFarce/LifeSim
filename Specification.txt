@@ -1,0 +1,51 @@
+LifeH specification
+
+Goals:
+-mimic the resource consumption of organisms
+-mimic the conversion of resources from one form to another
+-Create a simple genetic code that can be modified through selective 
+    processes
+
+
+Specification:
+
+FIELD:
+The playing field has a set of squares that each can contain resources 
+which and which is in contact with its adjacent squares.
+
+CELLS:
+Each cell has a "computer" and a set of resource stacks. Each resource 
+stack is a list of signed integers (undecided height and width). The 
+resources are referred to as 'val's (values). A val is a number, a coding 
+segment, and finally a unit of energy. Performing some operations will 
+the use of a val to perform, similar to chemical reactions. A val can be 
+likened to a chemical.
+
+The stacks are all identical, except for the input stack. At the beginning 
+each step, the input stack is erased in each cell and replaced by a number 
+of random vals, which represents the energy introduced by the sun in this 
+system.
+
+CODE EXECUTION:
+A certain code is considered the RUNNABLE flag. Of the stacks beginning 
+with the RUNNABLE flag, a random one is selected to be run at each step 
+(the running stack, and the program counter are stored in the cell). This 
+provides a simple way to allow competition between cells. A program can 
+be parasitic to other cells by pushing an extra code to nearby cells. 
+
+To help with positional advantage, one line of code is run from all the 
+cells at a time and in random order. This prevents any singular cell from 
+getting an early advantage. 
+
+CODES:
+Val access
+Name    cost    
+LOAD    0       Loads a cell into memory
+SET     0       Sets memory to a certain value
+POP     0       Shifts one val to a dfferent stack
+CONV    1       Converts one val to a different value
+CPUSH   2       Shifts one val to a different stack in a different cell
+CPOP    2       Shifts one val from a different cell to this cell
+
+
+
